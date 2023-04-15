@@ -24,20 +24,20 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: terraform -chdir=backend fmt -check
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform -chdir=backend init
       
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform -chdir=backend validate -no-color
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color -input=false
+        run: terraform -chdir=backend plan -no-color -input=false
         continue-on-error: true
 
       - name: Update Pull Request
@@ -74,6 +74,6 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+      # - name: Terraform Apply
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: terraform -chdir=backend apply -auto-approve -input=false
