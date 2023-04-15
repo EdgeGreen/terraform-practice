@@ -1,10 +1,16 @@
 name: "Terraform"
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      folder:
+        description: 'Folder project name'     
+        required: true
+        default: 'backend'
+  # push:
+  #   branches: "**"
+  # pull_request:
+  #   branches: [ main ]
 
 jobs:
   terraform:
@@ -24,20 +30,20 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform -chdir=backend fmt -check
+        run: terraform -chdir=${{ github.event.inputs.folder }} fmt -check
 
       - name: Terraform Init
         id: init
-        run: terraform -chdir=backend init
+        run: terraform -chdir=${{ github.event.inputs.folder }} init
       
       - name: Terraform Validate
         id: validate
-        run: terraform -chdir=backend validate -no-color
+        run: terraform -chdir=${{ github.event.inputs.folder }} validate -no-color
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform -chdir=backend plan -no-color -input=false
+        run: terraform -chdir=${{ github.event.inputs.folder }} plan -no-color -input=false
         continue-on-error: true
 
       - name: Update Pull Request
