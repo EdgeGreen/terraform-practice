@@ -18,17 +18,17 @@ terraform {
   #     name = "terraform-practice-api"
   #   }
   # }
-  backend "s3" {
-    bucket         = "terraform-practice-api-state-bucket"
-    key            = "tf-backend/terraform.tfstate"
-    region         = "us-west-2"
-    dynamodb_table = "terraform-practice-api-state-table"
-    encrypt        = true
-  }
+  # backend "s3" {
+  #   bucket         = "terraform-practice-api-state-bucket"
+  #   key            = "tf-backend/terraform.tfstate"
+  #   region         = "eu-central-1"
+  #   dynamodb_table = "terraform-practice-api-state-table"
+  #   encrypt        = true
+  # }
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "eu-central-1"
   default_tags {
     tags = {
       "organization"     = "edge-green",

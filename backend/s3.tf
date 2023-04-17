@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-practice-green"
+  bucket = var.s3_bucket_name
   tags = {
     "Name"        = var.s3_bucket_name
     "Description" = "S3 Remote Terraform State Store"
