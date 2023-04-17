@@ -19,10 +19,10 @@ terraform {
   #   }
   # }
   backend "s3" {
-    bucket         = var.s3_bucket_name
+    bucket         = "terraform-practice-api-state-bucket"
     key            = "tf-backend/terraform.tfstate"
     region         = "us-west-2"
-    dynamodb_table = var.dynamodb_table_name
+    dynamodb_table = "terraform-practice-api-state-table"
     encrypt        = true
   }
 }
