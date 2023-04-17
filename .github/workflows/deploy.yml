@@ -1,32 +1,22 @@
-name: "Backend Folder"
+name: "Terraform-deploy-manual"
 
 on:
-  push:
-    branches: "**"
-    paths:
-        - backend
+  workflow_dispatch:
+    inputs:
+      folder:
+        description: 'Folder project name'     
+        required: true
+        default: 'backend'
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: "Terraform-deploy-manual"
     runs-on: ubuntu-latest
-    defaults:
-        run:
-        # Backend working directory.
-          working-directory: backend
     permissions:
       pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Folder Filter
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            Mobile:
-                - 'backend/**'     
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -36,21 +26,24 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: terraform -chdir=${{ github.event.inputs.folder }} fmt -check
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform -chdir=${{ github.event.inputs.folder }} init
       
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform -chdir=${{ github.event.inputs.folder }} validate -no-color
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -input=false
+        run: terraform -chdir=${{ github.event.inputs.folder }} plan -no-color -input=false
         continue-on-error: true
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      - name: Terraform Apply
+        run: terraform -chdir=backend apply -auto-approve -input=false
