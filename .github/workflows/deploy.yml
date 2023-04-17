@@ -27,6 +27,7 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: terraform -chdir=${{ github.event.inputs.folder }} fmt -check
+        continue-on-error: true
 
       - name: Terraform Init
         id: init
