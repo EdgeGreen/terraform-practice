@@ -11,13 +11,13 @@ terraform {
   }
   required_version = ">= 1.1.0"
 
-  cloud {
-    organization = "edge-green"
+  # cloud {
+  #   organization = "edge-green"
 
-    workspaces {
-      name = "terraform-practice-api"
-    }
-  }
+  #   workspaces {
+  #     name = "terraform-practice-api"
+  #   }
+  # }
   backend "s3" {
     bucket         = var.s3_bucket_name
     key            = "tf-backend/terraform.tfstate"
