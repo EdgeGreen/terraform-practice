@@ -1,3 +1,6 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_lifecycle_configuration
+#---------------------------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "info_bucket" {
   bucket = var.s3_bucket_name
   tags = {

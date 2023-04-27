@@ -1,3 +1,6 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_notification
+#---------------------------------------------------------------------------------------------------
 data "archive_file" "create-store_metadata-archive" {
   source_file = "./lambda/metadata/metadata.py"
   output_path = "./lambda/metadata.zip"

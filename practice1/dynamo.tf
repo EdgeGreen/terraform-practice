@@ -1,5 +1,5 @@
-#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
-#------------------------------------------------------------------------------------------
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
+#--------------------------------------------------------------------------------------------
 resource "aws_dynamodb_table" "file_metadata" {
   name         = var.dynamoDB.table_name
   hash_key     = var.dynamoDB.table_hash_key
@@ -14,7 +14,7 @@ resource "aws_dynamodb_table" "file_metadata" {
     enabled = true
   }
   tags = {
-    "Name"        = "s3-metadata-table"
+    "Name"        = var.dynamoDB.table_name
     "Description" = "DynamoDB table for S3 Metadata"
   }
 }

@@ -19,6 +19,8 @@ terraform {
   #   }
   # }
 
+  # https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/guides/remote-state-backend
+  #-------------------------------------------------------------------------------------------------------------------
   backend "s3" {
     bucket         = "terraform-practice-api-state-bucket"
     key            = "tf-backend/terraform.tfstate"

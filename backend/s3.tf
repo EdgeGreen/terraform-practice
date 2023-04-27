@@ -1,3 +1,5 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
+#--------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "terraform_state" {
   bucket = var.s3_bucket_name
   tags = {

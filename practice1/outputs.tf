@@ -1,5 +1,5 @@
-#https://developer.hashicorp.com/terraform/language/values/outputs
-#-----------------------------------------------------------------
+# https://developer.hashicorp.com/terraform/language/values/outputs
+#------------------------------------------------------------------
 output "s3_bucket" {
   value       = aws_s3_bucket.info_bucket.arn
   description = "The ARN of the S3 bucket"

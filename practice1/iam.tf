@@ -1,5 +1,8 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group
+#-------------------------------------------------------------------------------------------------
 resource "aws_iam_role" "executeble_lambda_role" {
-  name = "executeble-lambda-role"
+  name = var.lambda_function_role
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -15,19 +18,10 @@ resource "aws_iam_role" "executeble_lambda_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_s3" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+resource "aws_iam_role_policy_attachment" "function_policies_attachment" {
   role       = aws_iam_role.executeble_lambda_role.id
-}
-
-resource "aws_iam_role_policy_attachment" "lambda_dynamodb" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
-  role       = aws_iam_role.executeble_lambda_role.id
-}
-
-resource "aws_iam_role_policy_attachment" "function_logging_policy_attachment" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  role       = aws_iam_role.executeble_lambda_role.id
+  count      = length(var.iam_role_policies)
+  policy_arn = var.iam_role_policies[count.index]
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group" {

@@ -1,3 +1,5 @@
+# https://developer.hashicorp.com/terraform/language/values/variables
+#--------------------------------------------------------------------
 variable "s3_bucket_name" {
   description = "S3 bucket for holding Terraform state. Must be globally unique."
   type        = string
