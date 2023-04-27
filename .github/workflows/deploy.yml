@@ -1,4 +1,4 @@
-name: "Terraform-deploy-manual"
+name: "Terraform-run-manual"
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       folder:
         description: "Folder project name"
         required: true
-        default: "backend"
+        default: ""
       tf_command:
         description: "Terrafom command for a run"
         required: true
@@ -40,13 +40,13 @@ jobs:
         run: terraform -chdir=${{ github.event.inputs.folder }} fmt -check
         continue-on-error: true
 
-      - name: Terraform Init
-        id: init
-        run: terraform -chdir=${{ github.event.inputs.folder }} init
-
       - name: Terraform Init Reconfigure
         id: init-reconfigure
         run: terraform -chdir=${{ github.event.inputs.folder }} init -reconfigure
+
+      - name: Terraform Init
+        id: init
+        run: terraform -chdir=${{ github.event.inputs.folder }} init
 
       - name: Terraform Validate
         id: validate
