@@ -62,4 +62,4 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform -chdir=backend ${{ github.event.inputs.tf_command }} -auto-approve -input=false
+        run: terraform -chdir=${{ github.event.inputs.folder }} ${{ github.event.inputs.tf_command }} -auto-approve -input=false
