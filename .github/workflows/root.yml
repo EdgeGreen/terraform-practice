@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       folder:
-        description: 'Folder project name'     
+        description: "Folder project name"
         required: true
-        default: 'backend'
+        default: "backend"
   # push:
   #   branches: "**"
   # pull_request:
@@ -35,7 +35,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform -chdir=${{ github.event.inputs.folder }} init
-      
+
       - name: Terraform Validate
         id: validate
         run: terraform -chdir=${{ github.event.inputs.folder }} validate -no-color

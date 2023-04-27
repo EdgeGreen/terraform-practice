@@ -19,9 +19,11 @@ terraform {
   #   }
   # }
 
+  # https://registry.terraform.io/providers/FlexibleEngineCloud/flexibleengine/latest/docs/guides/remote-state-backend
+  #-------------------------------------------------------------------------------------------------------------------
   backend "s3" {
     bucket         = "terraform-practice-api-state-bucket"
-    key            = "tf-backend/terraform.tfstate"
+    key            = "tf-backend/practice1/terraform.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "terraform-practice-api-state-table"
     encrypt        = true
@@ -29,14 +31,14 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region = var.aws_region
   default_tags {
     tags = {
-      "organization"     = "edge-green",
-      "Workspaces"       = "terraform-practice-api",
-      "Team"             = "DevOps",
-      "DeployedBy"       = "Terraform",
-      "OwnerEmail"       = "devops@example.com"
+      "organization" = "edge-green",
+      "Workspaces"   = "terraform-practice-api",
+      "Team"         = "DevOps",
+      "DeployedBy"   = "Terraform",
+      "OwnerEmail"   = "devops@example.com"
     }
   }
 }

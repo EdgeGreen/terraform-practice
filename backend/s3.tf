@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "terraform_state" {
     "Name"        = var.s3_bucket_name
     "Description" = "S3 Remote Terraform State Store"
   }
-    # lifecycle {
+  # lifecycle {
   #     prevent_destroy = true
   #    }
 }

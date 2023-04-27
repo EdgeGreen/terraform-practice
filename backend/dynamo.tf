@@ -1,4 +1,3 @@
-# Create a dynamodb table for locking the state files
 resource "aws_dynamodb_table" "terraform_state_locks" {
   name         = var.dynamodb_table_name
   billing_mode = "PAY_PER_REQUEST"

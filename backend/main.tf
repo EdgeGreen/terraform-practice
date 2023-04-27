@@ -32,11 +32,11 @@ provider "aws" {
   region = "eu-central-1"
   default_tags {
     tags = {
-      "organization"     = "edge-green",
-      "Workspaces"       = "terraform-practice-api",
-      "Team"             = "DevOps",
-      "DeployedBy"       = "Terraform",
-      "OwnerEmail"       = "devops@example.com"
+      "organization" = "edge-green",
+      "Workspaces"   = "terraform-practice-api",
+      "Team"         = "DevOps",
+      "DeployedBy"   = "Terraform",
+      "OwnerEmail"   = "devops@example.com"
     }
   }
 }

@@ -5,6 +5,7 @@
 *.tfstate
 *.tfstate.*
 *.gpg
+*.zip
 
 # Crash log files
 crash.log
