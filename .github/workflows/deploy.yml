@@ -7,6 +7,10 @@ on:
         description: "Folder project name"
         required: true
         default: "backend"
+      tf_command:
+        description: "Terrafom command for a run"
+        required: true
+        default: "apply"
 
 jobs:
   terraform:
@@ -58,4 +62,4 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform -chdir=backend apply -auto-approve -input=false
+        run: terraform -chdir=backend ${{ github.event.inputs.tf_command }} -auto-approve -input=false

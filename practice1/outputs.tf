@@ -15,8 +15,7 @@ output "lambda_function" {
   description = "The ARN of the Metadata Lambda Function"
 }
 
-
 output "iam_role" {
-  value       = aws_iam_role.executeble_lambda_role.id
+  value       = aws_iam_role.executeble_lambda_role.arn
   description = "The ARN of the Lambdas Role"
 }
