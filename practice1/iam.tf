@@ -12,7 +12,6 @@ resource "aws_iam_role" "executeble_lambda_role" {
         Principal = {
           Service = "lambda.amazonaws.com"
         }
-        Resource = ["arn:aws:lambda:${var.aws_region}:${var.account_number}:function:${var.lambda_function_metadata.function_name}"]
       }
     ]
   })

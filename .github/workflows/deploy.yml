@@ -61,5 +61,5 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
+      - name: Terraform Apply/Destroy
         run: terraform -chdir=${{ github.event.inputs.folder }} ${{ github.event.inputs.tf_command }} -auto-approve -input=false
